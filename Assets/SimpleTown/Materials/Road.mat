@@ -71,7 +71,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.778
     - _GlossyReflections: 1
-    - _Metallic: 0.573
+    - _Metallic: 0.514
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -80,13 +80,14 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SwerveX: 0
-    - _SwerveY: -0.00175
+    - _SwerveY: -0.00147
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
+    - _LightPos: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:

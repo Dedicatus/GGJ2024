@@ -43,8 +43,23 @@ namespace Road.Editor
                 PrefabUtility.SaveAsPrefabAsset(parent, $"Assets/Prefabs/Road/Buildings/{go.name}.prefab");
                 Object.DestroyImmediate(parent);
             }
+        }
 
-            // 然后同名嵌套多一层
+        [MenuItem("Tools/AddBoxCollider")]
+        public static void Create()
+        {
+            // 获取目录下的所有预制体
+
+            var prefabs = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/SimpleTown/Prefabs/Vehicles" });
+
+            // 生成一个空物体作为父物体
+
+            foreach (var prefab in prefabs)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(prefab);
+                var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                go.AddComponent<BoxCollider>();
+            }
         }
     }
 }
