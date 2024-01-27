@@ -96,10 +96,10 @@ MonoBehaviour:
   RoadMaker: {fileID: 5512180334286842946, guid: 41bed162c1c1d5941aa62a88381b9aa3, type: 3}
   passedDistance: 0
   boardValue: 10
-  maxSpeed: 200
-  minSpeed: 1
-  acceleration: 10
-  deceleration: 20
+  maxSpeed: 40
+  minSpeed: 20
+  acceleration: 40
+  deceleration: 40
   horizontalMoveSpeed: 10
   maxRotationAngle: 30
   maxBalanceSpeed: 2
@@ -283,15 +283,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1800621247263469625, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.40924266
+      value: -0.40924272
       objectReference: {fileID: 0}
     - target: {fileID: 1800621247263469625, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.40924266
+      value: -0.4092427
       objectReference: {fileID: 0}
     - target: {fileID: 1800621247263469625, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5766458
+      value: 0.57664585
       objectReference: {fileID: 0}
     - target: {fileID: 4429950337885928166, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_LocalRotation.w
