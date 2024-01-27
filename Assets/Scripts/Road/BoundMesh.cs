@@ -21,6 +21,17 @@ public class BoundMesh : SerializedMonoBehaviour
     }
 
     [Button]
+    public void ShowCube()
+    {
+        var cube = transform.Find("Cube");
+        if (cube != null)
+        {
+            cube.gameObject.SetActive(true);
+        }
+    }
+
+    
+    [Button]
     public void GetBound()
     {
         var filters = GetComponentsInChildren<MeshFilter>();
