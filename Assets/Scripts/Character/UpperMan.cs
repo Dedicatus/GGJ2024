@@ -34,6 +34,7 @@ public class UpperMan : MonoBehaviour
     private Vector2 outterAxis;
     [HideInInspector]
     public UnityAction<bool> OnChangeConnectState;
+    private float disconnectTimer;
 
     private void Start()
     {
@@ -45,10 +46,11 @@ public class UpperMan : MonoBehaviour
     {
         Input();
         UpdateState();
-        if (!connected)
+        if (!connected && disconnectTimer < 0f)
         {
             TryConnect();
         }
+        disconnectTimer -= Time.deltaTime;
     }
 
     private void UpdateState()
@@ -89,7 +91,7 @@ public class UpperMan : MonoBehaviour
             }
 
         }
-        else if (innerAxis.x < -0.3f)
+        else if(innerAxis.magnitude > 0.3f)
         {
             if (inputId == 1)
             {
@@ -122,12 +124,13 @@ public class UpperMan : MonoBehaviour
         {
             return;
         }
-        if (state)
+        if (!state)
         {
             var pos = innerArmAnchor.localPosition;
             pos.z = disconnectArmAnchorX;
             innerArmAnchor.localPosition = pos;
             innerArmIkTarget.transform.position = pos;
+            disconnectTimer = 0.5f;
             connected = false;
         }
         else
@@ -142,6 +145,7 @@ public class UpperMan : MonoBehaviour
         innerArmAnchor.localPosition = pos;
         innerArmIkTarget.transform.position = pos;
         connected = false;
+        disconnectTimer = 0.5f;
         OnChangeConnectState?.Invoke(connected);
     }
 

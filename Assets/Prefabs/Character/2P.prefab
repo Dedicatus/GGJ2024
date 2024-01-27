@@ -1254,13 +1254,13 @@ MonoBehaviour:
   outterArmMinAngle: -90
   outterArmMaxAngle: 90
   outterLegMinAngle: -90
-  outterLegMaxAngle: 0
+  outterLegMaxAngle: -90
   innerArmAnchor: {fileID: 8463474765500856473}
   innerArmTarget: {fileID: 8020953173420619497}
   innerArmMinMove: -1
   innerArmMaxMove: 1
-  disconnectArmAnchorX: 2
-  disconnectArmMove: 2
+  disconnectArmAnchorX: 1
+  disconnectArmMove: 2.5
   hand: {fileID: 4429950337885928166}
   handConnectRange: 0.25
 --- !u!1 &6597058376631343831

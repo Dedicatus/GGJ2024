@@ -30,6 +30,11 @@ public class CenterCalculator : MonoBehaviour
             armIkL.position = armIkR.position = (armTgtL.position + armTgtR.position) * 0.5f;
         }
     }
+    private void OnDestroy()
+    {
+        playerL.OnChangeConnectState -= OnChangeConnectState;
+        playerR.OnChangeConnectState -= OnChangeConnectState;
+    }
     private void OnChangeConnectState(bool connect)
     {
         connected = connect;
