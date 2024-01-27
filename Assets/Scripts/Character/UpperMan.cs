@@ -91,9 +91,13 @@ public class UpperMan : MonoBehaviour
         if (connected)
         {
             var t = Mathf.Lerp(0f, 1f, outterAxis.y * 0.5f + 0.5f);
-            if (outterAxis.magnitude < 0.1f)
+            if (outterAxis.magnitude < 0.5f || outterAxis.x < -0.2f && outterAxis.y < 0f)
             {
                 t = 0f;
+            }
+            else
+            {
+                t = 1f;
             }
             currentArmBalanceVal = Mathf.Lerp(0f, 1f, outterAxis.x);
 
