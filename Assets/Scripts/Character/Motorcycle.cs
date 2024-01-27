@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Road;
 
 public class Motorcycle : MonoSingleton<Motorcycle>
 {
+    public GameObject RoadMaker;
+    private RoadParent roadParent;
     private float balanceValue = 0f;
     public float BalanceValue
     {
@@ -18,16 +21,20 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     }
 
     public float boardValue = 10f;
-    public float moveSpeed = 5f;
 
-    public float rotationSpeed = 45f;
+    public float maxSpeed = 200;
+    public float acceleration = 10;
+    public float deceleration = 20;
+    public float horizontalMoveSpeed = 10f;
+
+    //public float rotationSpeed = 45f;
     public float maxRotationAngle = 30f; // 最大旋转角度
-    public float balanceSpeed = 2f; // 恢复平衡的速度
-    public float balanceValueSpeed = 2f; // 平衡值的速度
+    public float maxBalanceSpeed = 2f; // 恢复平衡的速度
+    public float balanceValueSpeed = 40f; // 平衡值的速度
 
-    public float balanceValueMax = 100f; // 平衡值的最大值
+    public float MaxBalanceValue = 100f; // 平衡值的最大值
 
-    public float balanceValueRegSpeed = 100f;
+    //public float balanceValueRegSpeed = 5f;
 
     private float currentRotationZ = 0f; // 当前的Z轴旋转角度
 
@@ -37,54 +44,70 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     [SerializeField]
     private float springBackDistance = 1;
     [SerializeField]
-    private float springBackRotation = 60;
+    private float springBackBalance = 200;
     private float currentSpringBackTime = 0.0f;
     private float springBackDirection = 1;
+
+    private void Start()
+    {
+        roadParent = RoadMaker.GetComponentInChildren<RoadParent>();
+    }
 
     private void Update()
     {
         if(GameManager.Instance.GameState == GameManager.GAMESTATE.Start) {
             if (!onSpringBack)
             {
-                if (Input.GetKey(KeyCode.A) && currentRotationZ < maxRotationAngle)
+                if (Input.GetKey(KeyCode.A) && balanceValue < MaxBalanceValue)
                 {
-                    currentRotationZ += rotationSpeed * Time.deltaTime;
+                    balanceValue -= balanceValueSpeed * Time.deltaTime;
                 }
-                else if (Input.GetKey(KeyCode.D) && currentRotationZ > -maxRotationAngle)
+                else if (Input.GetKey(KeyCode.D) && balanceValue > -MaxBalanceValue)
                 {
-                    currentRotationZ -= rotationSpeed * Time.deltaTime;
+                    balanceValue += balanceValueSpeed * Time.deltaTime;
                 }
                 else
                 {
                     // 如果没有按键或已达到最大旋转角度，快速恢复平衡
-                    currentRotationZ = Mathf.Lerp(currentRotationZ, 0, balanceSpeed * Time.deltaTime);
+                    balanceValue = Mathf.Lerp(balanceValue, 0, Mathf.Min(maxSpeed,roadParent.speed)* maxBalanceSpeed / maxSpeed * Time.deltaTime);
                 }
 
-                if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+                //if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+                //{
+                //    if (balanceValue > 0.05)
+                //    {
+                //        balanceValue -= balanceValueRegSpeed * Time.deltaTime;
+                //    }
+                //    else if (balanceValue < -0.05)
+                //    {
+                //        balanceValue += balanceValueRegSpeed * Time.deltaTime;
+                //    }
+                //    else
+                //    {
+                //        balanceValue = 0f;
+                //    }
+                //}
+
+                if (Input.GetKey(KeyCode.W)){
+                    if (roadParent.speed < maxSpeed)
+                    {
+                        roadParent.speed += acceleration * Time.deltaTime;
+                    }
+                }
+
+                if (Input.GetKey(KeyCode.S))
                 {
-                    if (balanceValue > 0.05)
-                    {
-                        balanceValue -= balanceValueRegSpeed * Time.deltaTime;
-                    }
-                    else if (balanceValue < -0.05)
-                    {
-                        balanceValue += balanceValueRegSpeed * Time.deltaTime;
-                    }
-                    else
-                    {
-                        balanceValue = 0f;
-                    }
+                    roadParent.speed -= deceleration * Time.deltaTime;
                 }
-
+                // 更新平衡值
+                updateRotationValue();
                 // 应用旋转
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
 
                 // 根据旋转角度调整X轴上的移动速度
                 float moveHorizontal = currentRotationZ / maxRotationAngle;
-                transform.position += new Vector3(-moveHorizontal * moveSpeed * Time.deltaTime, 0, 0);
+                transform.position += new Vector3(-moveHorizontal * horizontalMoveSpeed * Time.deltaTime, 0, 0);
 
-                // 更新平衡值
-                updateBalanceValue();
 
                 if (Mathf.Abs(transform.position.x) > boardValue)
                 {
@@ -97,9 +120,10 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             {
                 transform.position += new Vector3(springBackDirection * (springBackDistance/springBackTime) * Time.deltaTime, 0, 0);
                 currentSpringBackTime += Time.deltaTime;
-                currentRotationZ += -springBackDirection * (springBackRotation/springBackTime) * Time.deltaTime;
+                balanceValue += springBackDirection * (springBackBalance/springBackTime) * Time.deltaTime;
+                Mathf.Clamp(balanceValue, -100, 100);
+                updateRotationValue();
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
-                updateBalanceValue();
 
                 if (currentSpringBackTime >= springBackTime)
                 {
@@ -109,17 +133,18 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         }
     }
 
-    private void updateBalanceValue()
+    private void updateRotationValue()
     {
-        BalanceValue -= (currentRotationZ / maxRotationAngle) * balanceValueSpeed;
+        //BalanceValue -= (currentRotationZ / maxRotationAngle) * balanceValueSpeed;
 
-        if (BalanceValue > balanceValueMax)
-        {
-            BalanceValue = balanceValueMax;
-        }
-        else if (BalanceValue < -balanceValueMax)
-        {
-            BalanceValue = -balanceValueMax;
-        }
+        //if (BalanceValue > MaxBalanceValue)
+        //{
+        //    BalanceValue = MaxBalanceValue;
+        //}
+        //else if (BalanceValue < -MaxBalanceValue)
+        //{
+        //    BalanceValue = -MaxBalanceValue;
+        //}
+        currentRotationZ = -balanceValue / MaxBalanceValue * maxRotationAngle;
     }
 }
