@@ -25,6 +25,8 @@ namespace Road
 
         public RoadParent parent;
 
+        public GameObject container;
+
         public RoadCell[] cellList;
 
         [Button]
@@ -36,7 +38,7 @@ namespace Road
             while (debugOffset < maximumDistance)
             {
                 debugOffset = Mathf.Abs(thisToParent.z - generateDistance);
-                var cell = Instantiate(cellList[Random.Range(0, cellList.Length)], parent.transform);
+                var cell = Instantiate(cellList[Random.Range(0, cellList.Length)], container.transform);
                 cell.transform.localPosition = Vector3.forward * generateDistance;
                 generateDistance += cell.length;
                 // cell.GetComponent<RoadCell>().index = curIndex;

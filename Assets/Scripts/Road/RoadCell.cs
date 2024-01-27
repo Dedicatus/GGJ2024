@@ -1,5 +1,4 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Road
@@ -11,9 +10,9 @@ namespace Road
         public int index;
 
         public Transform center;
-        
-        public float farDistance;
-        
+
+        public float farDistance = -150f;
+
         [Button]
         public void GetLength()
         {
@@ -21,36 +20,32 @@ namespace Road
 
             var minZ = float.MaxValue;
             var maxZ = float.MinValue;
-            foreach (var child in GetComponentsInChildren<Transform>())
+            foreach (var child in GetComponentsInChildren<MeshFilter>())
             {
-                if (child == transform)
+                var max = child.sharedMesh.bounds.max.z;
+                var min = child.sharedMesh.bounds.min.z;
+                if (min < minZ)
                 {
-                    continue;
+                    minZ = min;
                 }
 
-                var z = child.position.z;
-                if (z < minZ)
+                if (max > maxZ)
                 {
-                    minZ = z;
-                }
-
-                if (z > maxZ)
-                {
-                    maxZ = z;
+                    maxZ = max;
                 }
             }
+
             length = maxZ - minZ;
         }
 
 
         public void Update()
         {
-            // var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
             var thisToParent = center.transform.InverseTransformPoint(transform.position);
             var distance = thisToParent.z;
             if (distance < farDistance)
             {
-                 Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
     }
