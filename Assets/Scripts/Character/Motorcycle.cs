@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Road;
+using Sirenix.OdinInspector;
 
 public class Motorcycle : MonoSingleton<Motorcycle>
 {
@@ -19,7 +20,8 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             return balanceValue;
         }
     }
-
+    [ReadOnly]
+    public float passedDistance= 0f;
     public float boardValue = 10f;
 
     public float maxSpeed = 200;
@@ -103,6 +105,8 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                         roadParent.speed -= deceleration * Time.deltaTime;
                     }
                 }
+
+                passedDistance += roadParent.speed * Time.deltaTime;
                 // 更新平衡值
                 updateRotationValue();
                 // 应用旋转

@@ -7,6 +7,8 @@ public class UIManager : MonoSingleton<UIManager>
 {
 	public GameObject BalanceBar;
 	public GameObject PromptText;
+    public Text RemainTimeText;
+    public Text RemainDistanceText;
 
 	private Text promptTextComponent; // To hold the Text component of the PromptText GameObject
 
@@ -51,4 +53,17 @@ public class UIManager : MonoSingleton<UIManager>
 			promptTextComponent.text = newText;
 		}
 	}
+
+    private void Update()
+    {
+        RemainDistanceText.text = "Goal: " + Mathf.RoundToInt(GameManager.Instance.remainDistance).ToString();
+
+        // Convert remainTime from float to MM:SS format
+        int totalSeconds = Mathf.RoundToInt(GameManager.Instance.remainTime); // Round to the nearest second
+        int minutes = totalSeconds / 60; // Get the total minutes
+        int seconds = totalSeconds % 60; // Get the remaining seconds
+
+        // Format remainTime as MM:SS. The ToString("00") ensures that the value is always displayed with at least two digits, adding leading zeros if necessary.
+        RemainTimeText.text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
+    }
 }
