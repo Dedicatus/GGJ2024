@@ -33,6 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
     void StartGame()
     {
         GameState = GAMESTATE.Start;
+        UIManager.Instance.OnGameStart();
     }
 
     public void EndGame()
@@ -43,12 +44,14 @@ public class GameManager : MonoSingleton<GameManager>
     public void PauseGame()
     {
         GameState = GAMESTATE.Pause;
+        UIManager.Instance.OnGamePause();
         Time.timeScale = 0;
     }
 
     public void ContinueGame()
     {
         GameState = GAMESTATE.Start;
+        UIManager.Instance.OnGameContinue();
         Time.timeScale = 1;
     }
 
