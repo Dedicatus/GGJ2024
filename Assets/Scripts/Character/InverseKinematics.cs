@@ -4,8 +4,8 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 
-public class InverseKinematics : MonoBehaviour {
-
+public class InverseKinematics : MonoBehaviour 
+{
 	public Transform upperArm;
 	public Transform forearm;
 	public Transform hand;
@@ -26,21 +26,15 @@ public class InverseKinematics : MonoBehaviour {
 	float arm_Length;
 	float targetDistance;
 	float adyacent;
-
-	// Use this for initialization
-	void Start () {
-
-	}
 	
-	// Update is called once per frame
-	void LateUpdate () {
-		if(upperArm != null && forearm != null && hand != null && elbow != null && target != null){
+	void LateUpdate () 
+	{
+		if(upperArm != null && forearm != null && hand != null && elbow != null && target != null)
+		{
 			upperArm.LookAt (target, elbow.position - upperArm.position);
 			upperArm.Rotate (uppperArm_OffsetRotation);
 
 			Vector3 cross = Vector3.Cross (elbow.position - upperArm.position, forearm.position - upperArm.position);
-
-
 
 			upperArm_Length = Vector3.Distance (upperArm.position, forearm.position);
 			forearm_Length =  Vector3.Distance (forearm.position, hand.position);
@@ -57,17 +51,21 @@ public class InverseKinematics : MonoBehaviour {
 			forearm.LookAt(target, cross);
 			forearm.Rotate (forearm_OffsetRotation);
 
-			if(handMatchesTargetRotation){
+			if(handMatchesTargetRotation)
+			{
 				hand.rotation = target.rotation;
 				hand.Rotate (hand_OffsetRotation);
 			}
 			
-			if(debug){
-				if (forearm != null && elbow != null) {
+			if(debug)
+			{
+				if (forearm != null && elbow != null) 
+				{
 					Debug.DrawLine (forearm.position, elbow.position, Color.blue);
 				}
 
-				if (upperArm != null && target != null) {
+				if (upperArm != null && target != null) 
+				{
 					Debug.DrawLine (upperArm.position, target.position, Color.red);
 				}
 			}
@@ -76,9 +74,12 @@ public class InverseKinematics : MonoBehaviour {
 		
 	}
 
-	void OnDrawGizmos(){
-		if (debug) {
-			if(upperArm != null && elbow != null && hand != null && target != null && elbow != null){
+	void OnDrawGizmos()
+	{
+		if (debug) 
+		{
+			if(upperArm != null && elbow != null && hand != null && target != null && elbow != null)
+			{
 				Gizmos.color = Color.gray;
 				Gizmos.DrawLine (upperArm.position, forearm.position);
 				Gizmos.DrawLine (forearm.position, hand.position);
