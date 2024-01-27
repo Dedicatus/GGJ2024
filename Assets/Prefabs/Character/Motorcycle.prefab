@@ -92,6 +92,8 @@ MonoBehaviour:
   rotationSpeed: 45
   maxRotationAngle: 30
   balanceSpeed: 2
+  balanceValueSpeed: 0.1
+  balanceValueMax: 100
 --- !u!1 &8940281615411330279
 GameObject:
   m_ObjectHideFlags: 0
