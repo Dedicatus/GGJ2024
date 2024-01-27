@@ -76,6 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateDistance: 0
+  randomEmpty: 0
+  emptyTime: 0
+  forceEmpty: 0
   curIndex: 0
   padding: 0
   maximumDistance: 500
@@ -210,6 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateDistance: 0
+  randomEmpty: 0
+  emptyTime: 0
+  forceEmpty: 0
   curIndex: 0
   padding: 5
   maximumDistance: 500
@@ -386,6 +392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateDistance: 0
+  randomEmpty: 0
+  emptyTime: 0
+  forceEmpty: 0
   curIndex: 0
   padding: 5
   maximumDistance: 500
@@ -494,6 +503,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateDistance: 0
+  randomEmpty: 0
+  emptyTime: 0
+  forceEmpty: 0
   curIndex: 0
   padding: 0
   maximumDistance: 500
@@ -502,6 +514,8 @@ MonoBehaviour:
   container: {fileID: 7707320987182186905}
   cellList:
   - {fileID: 3166975690054959309, guid: 3e57613163a87c444bc2d96a526913b4, type: 3}
+  - {fileID: 3166975690054959309, guid: 38fb9e48611941141aad6538e7f5eed2, type: 3}
+  - {fileID: 3166975690054959309, guid: bccd7f96df41979438ff8457edb4fa71, type: 3}
 --- !u!1 &7707320987182186905
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +623,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateDistance: 0
+  randomEmpty: 0
+  emptyTime: 0
+  forceEmpty: 0
   curIndex: 0
   padding: 0
   maximumDistance: 500
