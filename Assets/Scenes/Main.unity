@@ -298,10 +298,6 @@ PrefabInstance:
       propertyPath: RoadMaker
       value: 
       objectReference: {fileID: 1138303416}
-    - target: {fileID: 8940281615303652043, guid: fbbeb1e827181451cba6c1a3f219ac12, type: 3}
-      propertyPath: balanceValueSpeed
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 8940281615303652044, guid: fbbeb1e827181451cba6c1a3f219ac12, type: 3}
       propertyPath: m_Name
       value: Motorcycle

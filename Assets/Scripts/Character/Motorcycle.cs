@@ -25,7 +25,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         }
     }
     [ReadOnly]
-    public float passedDistance= 0f;
+    public float passedDistance = 0f;
     public float boardValue = 10f;
 
     public float maxSpeed = 200;
@@ -58,23 +58,25 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     private void Start()
     {
         roadParent = RoadMaker.GetComponentInChildren<RoadParent>();
+        roadParent.speed = (minSpeed + maxSpeed) * 0.5f;
     }
 
     private void Update()
     {
-        if(GameManager.Instance.GameState == GameManager.GAMESTATE.Start) {
+        if (GameManager.Instance.GameState == GameManager.GAMESTATE.Start)
+        {
             if (!onSpringBack)
             {
-                if (Input.GetKey(KeyCode.A) )
+                if (Input.GetKey(KeyCode.A))
                 {
-                    if(BalanceValue > -MaxBalanceValue * 0.5)
+                    if (BalanceValue > -MaxBalanceValue * 0.5)
                     {
                         BalanceValue -= balanceValueSpeed * Time.deltaTime;
                     }
                 }
                 else if (Input.GetKey(KeyCode.D))
                 {
-                    if(BalanceValue < MaxBalanceValue * 0.5)
+                    if (BalanceValue < MaxBalanceValue * 0.5)
                     {
                         BalanceValue += balanceValueSpeed * Time.deltaTime;
                     }
@@ -82,7 +84,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 else
                 {
                     // 如果没有按键或已达到最大旋转角度，快速恢复平衡
-                    BalanceValue = Mathf.Lerp(BalanceValue, 0, Mathf.Min(maxSpeed,roadParent.speed)* maxBalanceSpeed / maxSpeed * Time.deltaTime);
+                    BalanceValue = Mathf.Lerp(BalanceValue, 0, Mathf.Min(maxSpeed, roadParent.speed) * maxBalanceSpeed / maxSpeed * Time.deltaTime);
                 }
 
                 //if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
@@ -101,7 +103,8 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 //    }
                 //}
 
-                if (Input.GetKey(KeyCode.W)){
+                if (Input.GetKey(KeyCode.W))
+                {
                     if (roadParent.speed < maxSpeed)
                     {
                         roadParent.speed += acceleration * Time.deltaTime;
@@ -110,7 +113,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
                 if (Input.GetKey(KeyCode.S))
                 {
-                    if(roadParent.speed > minSpeed)
+                    if (roadParent.speed > minSpeed)
                     {
                         roadParent.speed -= deceleration * Time.deltaTime;
                     }
@@ -137,9 +140,9 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             }
             else
             {
-                transform.position += new Vector3(springBackDirection * (springBackDistance/springBackTime) * Time.deltaTime, 0, 0);
+                transform.position += new Vector3(springBackDirection * (springBackDistance / springBackTime) * Time.deltaTime, 0, 0);
                 currentSpringBackTime += Time.deltaTime;
-                BalanceValue += springBackDirection * (springBackBalance/springBackTime) * Time.deltaTime;
+                BalanceValue += springBackDirection * (springBackBalance / springBackTime) * Time.deltaTime;
                 updateRotationValue();
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
 
@@ -191,7 +194,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             // Determine the direction based on the angle
             if (angleToFront <= 30)
             {
-                roadParent.speed = Mathf.Max(1, roadParent.speed - 10);
+                roadParent.speed = Mathf.Max(minSpeed, roadParent.speed * 0.5f);
             }
             else
             {
