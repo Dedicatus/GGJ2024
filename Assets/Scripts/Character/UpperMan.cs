@@ -63,11 +63,11 @@ public class UpperMan : MonoBehaviour
         currentArmBalanceVal = Mathf.Max(0f, currentArmBalanceVal);
         if (inputId == 1)
         {
-            Motorcycle.Instance.BalanceValue -= balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
+            Motorcycle.Instance.UpperManBalanceValue -= balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
         }
         if (inputId == 2)
         {
-            Motorcycle.Instance.BalanceValue += balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
+            Motorcycle.Instance.UpperManBalanceValue += balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
         }
     }
 
@@ -138,11 +138,11 @@ public class UpperMan : MonoBehaviour
             BreakConnect();
             if (inputId == 1)
             {
-                Motorcycle.Instance.BalanceValue -= collisionBalanceDamage;
+                Motorcycle.Instance.UpperManBalanceValue -= collisionBalanceDamage;
             }
             if (inputId == 2)
             {
-                Motorcycle.Instance.BalanceValue += collisionBalanceDamage;
+                Motorcycle.Instance.UpperManBalanceValue += collisionBalanceDamage;
             }
             AudioManager.Instance.PlayTestEffectSound();
         }
