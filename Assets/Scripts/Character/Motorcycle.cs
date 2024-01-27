@@ -44,7 +44,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     [SerializeField]
     private float springBackDistance = 1;
     [SerializeField]
-    private float springBackBalance = 200;
+    private float springBackBalance = 100;
     private float currentSpringBackTime = 0.0f;
     private float springBackDirection = 1;
 
@@ -114,6 +114,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                     onSpringBack = true;
                     currentSpringBackTime = 0.0f;
                     springBackDirection = transform.position.x > 0 ? -1 : 1;
+                    springBackBalance = Mathf.Abs(balanceValue) * 1.6f;
                 }
             }
             else

@@ -88,12 +88,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00090ccd625a742a39138410a7a7506d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotationSpeed: 45
+  RoadMaker: {fileID: 5512180334286842946, guid: 41bed162c1c1d5941aa62a88381b9aa3, type: 3}
+  boardValue: 10
+  maxSpeed: 200
+  acceleration: 10
+  deceleration: 20
+  horizontalMoveSpeed: 10
   maxRotationAngle: 30
-  balanceSpeed: 2
-  balanceValueSpeed: 0.1
-  balanceValueMax: 100
+  maxBalanceSpeed: 2
+  balanceValueSpeed: 40
+  MaxBalanceValue: 100
+  springBackTime: 0.4
+  springBackDistance: 1
+  springBackBalance: 200
 --- !u!1 &8940281615411330279
 GameObject:
   m_ObjectHideFlags: 0
