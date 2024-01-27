@@ -7,8 +7,8 @@ public class Vehicle : SerializedMonoBehaviour
 
     public bool forward;
 
-    private void Update()
-    {
-        transform.Translate(forward ? Vector3.forward : Vector3.back * (speed * Time.deltaTime));
-    }
+    // private void Update()
+    // {
+    //     transform.Translate(forward ? Vector3.forward : Vector3.back * (speed * Time.deltaTime));
+    // }
 }
