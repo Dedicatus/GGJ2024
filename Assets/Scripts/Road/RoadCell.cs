@@ -69,11 +69,14 @@ namespace Road
 
         public void Update()
         {
-            var thisToParent = center.transform.InverseTransformPoint(transform.position);
-            var distance = thisToParent.z;
-            if (distance < farDistance)
+            if (center)
             {
-                Destroy(gameObject);
+                var thisToParent = center.transform.InverseTransformPoint(transform.position);
+                var distance = thisToParent.z;
+                if (distance < farDistance)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
