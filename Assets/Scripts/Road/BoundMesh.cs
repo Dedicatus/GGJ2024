@@ -18,6 +18,7 @@ public class BoundMesh : SerializedMonoBehaviour
             var filter = filters[i];
             
             var childBounds = filter.sharedMesh.bounds;
+            childBounds.extents = Vector3.Scale(childBounds.extents, filter.transform.localScale);
             childBounds.center = filter.transform.position;
             if (i == 0)
             {
