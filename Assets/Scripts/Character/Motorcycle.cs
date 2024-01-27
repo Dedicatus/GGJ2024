@@ -162,7 +162,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         BalanceValue = UpperManBalanceValue + MotorcycleBalanceValue;
     }
 
-    private void startSpringBack()
+    public void startSpringBack()
     {
         onSpringBack = true;
         currentSpringBackTime = 0.0f;
