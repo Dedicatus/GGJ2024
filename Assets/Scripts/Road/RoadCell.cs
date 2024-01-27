@@ -22,8 +22,8 @@ namespace Road
             var maxZ = float.MinValue;
             foreach (var child in GetComponentsInChildren<MeshFilter>())
             {
-                var max = child.sharedMesh.bounds.max.z;
-                var min = child.sharedMesh.bounds.min.z;
+                var max = child.sharedMesh.bounds.max.x;
+                var min = child.sharedMesh.bounds.min.x;
                 if (min < minZ)
                 {
                     minZ = min;

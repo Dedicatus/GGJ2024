@@ -24,6 +24,18 @@ namespace Road.Editor
                 parent.transform.localScale = Vector3.one;
                 parent.AddComponent<BoundMesh>();
                 parent.AddComponent<RoadCell>();
+
+                // 添加一个 Cube 到 0, 0 位置
+
+                var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.SetParent(parent.transform);
+                cube.transform.localPosition = Vector3.zero;
+                cube.transform.localRotation = Quaternion.identity;
+                cube.transform.localScale = Vector3.one;
+                cube.name = "Cube";
+                Object.DestroyImmediate(cube.GetComponent<BoxCollider>());
+
+
                 var instance = PrefabUtility.InstantiatePrefab(go, parent.transform) as GameObject;
                 instance.transform.position = Vector3.zero;
                 instance.transform.rotation = Quaternion.identity;

@@ -15,6 +15,7 @@ namespace Road
 
         public int curIndex;
 
+        public float padding = 2;
 
         /// <summary>
         /// 玩家点到这个距离时，生成下一段道路
@@ -40,7 +41,7 @@ namespace Road
                 debugOffset = Mathf.Abs(thisToParent.z - generateDistance);
                 var cell = Instantiate(cellList[Random.Range(0, cellList.Length)], container.transform);
                 cell.transform.localPosition = Vector3.forward * generateDistance;
-                generateDistance += cell.length;
+                generateDistance += cell.length + Random.Range(0, padding);
                 // cell.GetComponent<RoadCell>().index = curIndex;
                 cell.index = curIndex;
                 cell.center = transform;

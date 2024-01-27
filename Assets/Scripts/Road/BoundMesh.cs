@@ -6,7 +6,20 @@ public class BoundMesh : SerializedMonoBehaviour
     public Bounds bounds;
 
     public Vector3 forward = Vector3.right;
-    
+
+    public bool showGizmos;
+
+
+    [Button]
+    public void HideCube()
+    {
+        var cube = transform.Find("Cube");
+        if (cube != null)
+        {
+            cube.gameObject.SetActive(false);
+        }
+    }
+
     [Button]
     public void GetBound()
     {
@@ -16,7 +29,7 @@ public class BoundMesh : SerializedMonoBehaviour
         for (var i = 0; i < filters.Length; i++)
         {
             var filter = filters[i];
-            
+
             var childBounds = filter.sharedMesh.bounds;
             childBounds.extents = Vector3.Scale(childBounds.extents, filter.transform.localScale);
             childBounds.center = filter.transform.position;
@@ -32,24 +45,41 @@ public class BoundMesh : SerializedMonoBehaviour
     }
 
     [Button]
-    public void RemapPos()
+    public void RemapPosX()
     {
-        
         // 依据 bounds 和 forward 重新计算子物体的位置
-
         var children = GetComponentsInChildren<MeshFilter>();
-        
+
         foreach (var child in children)
         {
             if (child.name == "Cube")
             {
                 continue;
             }
+
             child.transform.localPosition = bounds.center - forward * bounds.extents.x;
             child.transform.Rotate(Vector3.up, -90);
         }
     }
-    
+
+    [Button]
+    public void RemapPosZ()
+    {
+        // 依据 bounds 和 forward 重新计算子物体的位置
+        var children = GetComponentsInChildren<MeshFilter>();
+
+        foreach (var child in children)
+        {
+            if (child.name == "Cube")
+            {
+                continue;
+            }
+
+            child.transform.localPosition = bounds.center - forward * bounds.extents.z;
+            child.transform.Rotate(Vector3.up, -90);
+        }
+    }
+
     // [Button]
     // public void DemapChildPos()
     // {
@@ -71,6 +101,10 @@ public class BoundMesh : SerializedMonoBehaviour
 
     public void OnDrawGizmos()
     {
+        if (!showGizmos)
+        {
+            return;
+        }
         // Gizmos.matrix = transform.worldToLocalMatrix;
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(bounds.center, bounds.size);
