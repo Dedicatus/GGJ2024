@@ -1250,6 +1250,7 @@ MonoBehaviour:
   body: {fileID: 6991304946815666121}
   innerArmIkTarget: {fileID: 534349274703333349}
   currentBalenceVal: 0
+  balenceChangeSpeed: 40
   outterAngleChangeSpd: 180
   outterArmMinAngle: -90
   outterArmMaxAngle: 90

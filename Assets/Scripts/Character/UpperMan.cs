@@ -11,8 +11,9 @@ public class UpperMan : MonoBehaviour
     public GameObject outterArm;
     public GameObject body;
     public GameObject innerArmIkTarget;
-    [HideInInspector]
-    public float currentBalenceVal;
+    private float currentArmBalenceVal;
+    public float balenceChangeSpeed;
+    [Space(10)]
     public float outterAngleChangeSpd;
     public float outterArmMinAngle;
     public float outterArmMaxAngle;
@@ -58,6 +59,15 @@ public class UpperMan : MonoBehaviour
         }
         disconnectTimer -= Time.deltaTime;
         crouchTimer -= Time.deltaTime;
+        currentArmBalenceVal = Mathf.Max(0f, currentArmBalenceVal);
+        if (inputId == 1)
+        {
+            Motorcycle.Instance.BalanceValue -= balenceChangeSpeed * currentArmBalenceVal * Time.deltaTime;
+        }
+        if (inputId == 2)
+        {
+            Motorcycle.Instance.BalanceValue += balenceChangeSpeed * currentArmBalenceVal * Time.deltaTime;
+        }
     }
 
     private void UpdateState()
@@ -84,7 +94,7 @@ public class UpperMan : MonoBehaviour
             {
                 t = 0f;
             }
-            currentBalenceVal = outterAxis.y > 0f ? Mathf.Lerp(0f, 1f, outterAxis.x) : Mathf.Lerp(0.5f, 1f, outterAxis.x);
+            currentArmBalenceVal = Mathf.Lerp(0f, 1f, outterAxis.x);
 
             var currentRot = outterArm.transform.rotation;
             var targetRot = Quaternion.Euler(0f, yAngle, Mathf.Lerp(outterArmMinAngle, outterArmMaxAngle, t));
