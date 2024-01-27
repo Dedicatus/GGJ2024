@@ -14,6 +14,10 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         set
         {
             balanceValue = value;
+            if (Mathf.Abs(balanceValue) > 100)
+            {
+                GameManager.Instance.EndGame(false);
+            }
         }
         get
         {
@@ -61,18 +65,18 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         if(GameManager.Instance.GameState == GameManager.GAMESTATE.Start) {
             if (!onSpringBack)
             {
-                if (Input.GetKey(KeyCode.A) && balanceValue < MaxBalanceValue)
+                if (Input.GetKey(KeyCode.A) && BalanceValue < MaxBalanceValue* 0.5)
                 {
-                    balanceValue -= balanceValueSpeed * Time.deltaTime;
+                    BalanceValue -= balanceValueSpeed * Time.deltaTime;
                 }
-                else if (Input.GetKey(KeyCode.D) && balanceValue > -MaxBalanceValue)
+                else if (Input.GetKey(KeyCode.D) && BalanceValue > -MaxBalanceValue * 0.5)
                 {
-                    balanceValue += balanceValueSpeed * Time.deltaTime;
+                    BalanceValue += balanceValueSpeed * Time.deltaTime;
                 }
                 else
                 {
                     // 如果没有按键或已达到最大旋转角度，快速恢复平衡
-                    balanceValue = Mathf.Lerp(balanceValue, 0, Mathf.Min(maxSpeed,roadParent.speed)* maxBalanceSpeed / maxSpeed * Time.deltaTime);
+                    BalanceValue = Mathf.Lerp(BalanceValue, 0, Mathf.Min(maxSpeed,roadParent.speed)* maxBalanceSpeed / maxSpeed * Time.deltaTime);
                 }
 
                 //if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
@@ -122,15 +126,14 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                     onSpringBack = true;
                     currentSpringBackTime = 0.0f;
                     springBackDirection = transform.position.x > 0 ? -1 : 1;
-                    springBackBalance = Mathf.Abs(balanceValue) * 1.8f;
+                    springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
                 }
             }
             else
             {
                 transform.position += new Vector3(springBackDirection * (springBackDistance/springBackTime) * Time.deltaTime, 0, 0);
                 currentSpringBackTime += Time.deltaTime;
-                balanceValue += springBackDirection * (springBackBalance/springBackTime) * Time.deltaTime;
-                Mathf.Clamp(balanceValue, -100, 100);
+                BalanceValue += springBackDirection * (springBackBalance/springBackTime) * Time.deltaTime;
                 updateRotationValue();
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
 
@@ -154,6 +157,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         //{
         //    BalanceValue = -MaxBalanceValue;
         //}
-        currentRotationZ = -balanceValue / MaxBalanceValue * maxRotationAngle;
+        currentRotationZ = -BalanceValue / MaxBalanceValue * maxRotationAngle;
+        Mathf.Clamp(currentRotationZ, -maxRotationAngle, maxRotationAngle);
     }
 }
