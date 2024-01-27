@@ -23,6 +23,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     public float boardValue = 10f;
 
     public float maxSpeed = 200;
+    public float minSpeed = 1;
     public float acceleration = 10;
     public float deceleration = 20;
     public float horizontalMoveSpeed = 10f;
@@ -97,7 +98,10 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
                 if (Input.GetKey(KeyCode.S))
                 {
-                    roadParent.speed -= deceleration * Time.deltaTime;
+                    if(roadParent.speed > minSpeed)
+                    {
+                        roadParent.speed -= deceleration * Time.deltaTime;
+                    }
                 }
                 // 更新平衡值
                 updateRotationValue();
@@ -114,7 +118,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                     onSpringBack = true;
                     currentSpringBackTime = 0.0f;
                     springBackDirection = transform.position.x > 0 ? -1 : 1;
-                    springBackBalance = Mathf.Abs(balanceValue) * 1.6f;
+                    springBackBalance = Mathf.Abs(balanceValue) * 1.8f;
                 }
             }
             else
