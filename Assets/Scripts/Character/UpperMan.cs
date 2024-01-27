@@ -11,8 +11,9 @@ public class UpperMan : MonoBehaviour
     public GameObject outterArm;
     public GameObject body;
     public GameObject innerArmIkTarget;
-    private float currentArmBalenceVal;
-    public float balenceChangeSpeed;
+    private float currentArmBalanceVal;
+    public float balanceChangeSpeed;
+    public float collisionBalanceDamage;
     [Space(10)]
     public float outterAngleChangeSpd;
     public float outterArmMinAngle;
@@ -59,14 +60,14 @@ public class UpperMan : MonoBehaviour
         }
         disconnectTimer -= Time.deltaTime;
         crouchTimer -= Time.deltaTime;
-        currentArmBalenceVal = Mathf.Max(0f, currentArmBalenceVal);
+        currentArmBalanceVal = Mathf.Max(0f, currentArmBalanceVal);
         if (inputId == 1)
         {
-            Motorcycle.Instance.BalanceValue -= balenceChangeSpeed * currentArmBalenceVal * Time.deltaTime;
+            Motorcycle.Instance.BalanceValue -= balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
         }
         if (inputId == 2)
         {
-            Motorcycle.Instance.BalanceValue += balenceChangeSpeed * currentArmBalenceVal * Time.deltaTime;
+            Motorcycle.Instance.BalanceValue += balanceChangeSpeed * currentArmBalanceVal * Time.deltaTime;
         }
     }
 
@@ -94,7 +95,7 @@ public class UpperMan : MonoBehaviour
             {
                 t = 0f;
             }
-            currentArmBalenceVal = Mathf.Lerp(0f, 1f, outterAxis.x);
+            currentArmBalanceVal = Mathf.Lerp(0f, 1f, outterAxis.x);
 
             var currentRot = outterArm.transform.rotation;
             var targetRot = Quaternion.Euler(0f, yAngle, Mathf.Lerp(outterArmMinAngle, outterArmMaxAngle, t));
@@ -127,6 +128,21 @@ public class UpperMan : MonoBehaviour
             else
             {
                 innerArmIkTarget.transform.position = innerArmAnchor.position + (Vector3)innerAxis * disconnectArmMove;
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("AirObstacle"))
+        {
+            BreakConnect();
+            if (inputId == 1)
+            {
+                Motorcycle.Instance.BalanceValue -= collisionBalanceDamage;
+            }
+            if (inputId == 2)
+            {
+                Motorcycle.Instance.BalanceValue += collisionBalanceDamage;
             }
         }
     }
