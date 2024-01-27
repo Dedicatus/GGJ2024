@@ -144,6 +144,7 @@ public class UpperMan : MonoBehaviour
             {
                 Motorcycle.Instance.BalanceValue += collisionBalanceDamage;
             }
+            AudioManager.Instance.PlayTestEffectSound();
         }
     }
     private void TryConnect()
