@@ -16,7 +16,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             balanceValue = value;
             if (Mathf.Abs(balanceValue) > 100)
             {
-                GameManager.Instance.EndGame(false);
+                //  GameManager.Instance.EndGame(false);
             }
         }
         get
@@ -65,13 +65,19 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         if(GameManager.Instance.GameState == GameManager.GAMESTATE.Start) {
             if (!onSpringBack)
             {
-                if (Input.GetKey(KeyCode.A) && BalanceValue < MaxBalanceValue* 0.5)
+                if (Input.GetKey(KeyCode.A) )
                 {
-                    BalanceValue -= balanceValueSpeed * Time.deltaTime;
+                    if(BalanceValue > -MaxBalanceValue * 0.5)
+                    {
+                        BalanceValue -= balanceValueSpeed * Time.deltaTime;
+                    }
                 }
-                else if (Input.GetKey(KeyCode.D) && BalanceValue > -MaxBalanceValue * 0.5)
+                else if (Input.GetKey(KeyCode.D))
                 {
-                    BalanceValue += balanceValueSpeed * Time.deltaTime;
+                    if(BalanceValue < MaxBalanceValue * 0.5)
+                    {
+                        BalanceValue += balanceValueSpeed * Time.deltaTime;
+                    }
                 }
                 else
                 {
@@ -121,13 +127,13 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 transform.position += new Vector3(-moveHorizontal * horizontalMoveSpeed * Time.deltaTime, 0, 0);
 
 
-                if (Mathf.Abs(transform.position.x) > boardValue)
-                {
-                    onSpringBack = true;
-                    currentSpringBackTime = 0.0f;
-                    springBackDirection = transform.position.x > 0 ? -1 : 1;
-                    springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
-                }
+                //if (Mathf.Abs(transform.position.x) > boardValue)
+                //{
+                //    onSpringBack = true;
+                //    currentSpringBackTime = 0.0f;
+                //    springBackDirection = transform.position.x > 0 ? -1 : 1;
+                //    springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
+                //}
             }
             else
             {
@@ -160,4 +166,36 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         currentRotationZ = -BalanceValue / MaxBalanceValue * maxRotationAngle;
         Mathf.Clamp(currentRotationZ, -maxRotationAngle, maxRotationAngle);
     }
+
+    private void startSpringBack()
+    {
+        onSpringBack = true;
+        currentSpringBackTime = 0.0f;
+        springBackDirection = transform.position.x > 0 ? -1 : 1;
+        springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Vector3 closestPoint = other.ClosestPoint(transform.position);
+        Vector3 directionToClosestPoint = closestPoint - transform.position;
+
+        // Normalize the direction
+        directionToClosestPoint.Normalize();
+
+        float angleToFront = Vector3.Angle(transform.forward, directionToClosestPoint);
+        float angleToRight = Vector3.Angle(transform.right, directionToClosestPoint);
+
+        // Determine the direction based on the angle
+        if (angleToFront <= 30)
+        {
+            roadParent.speed = Mathf.Max(1, roadParent.speed - 10);
+        }
+        else 
+        {
+            startSpringBack();
+        }        
+
+    }
+
 }
