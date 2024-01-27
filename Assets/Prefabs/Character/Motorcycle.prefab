@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5551310526610647233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8146817374016483699}
+  - component: {fileID: 8111323059790630443}
+  - component: {fileID: 7943376747364159373}
+  - component: {fileID: 2810205310682196021}
+  m_Layer: 0
+  m_Name: MotorCollisionObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8146817374016483699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551310526610647233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8940281615303652040}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8111323059790630443
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551310526610647233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7943376747364159373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551310526610647233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d161bdad3b4904798218b3bf4b4d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &2810205310682196021
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551310526610647233}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8940281615303652044
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +87,6 @@ GameObject:
   - component: {fileID: 8940281615303652046}
   - component: {fileID: 8940281615303652043}
   - component: {fileID: 6679327783680736262}
-  - component: {fileID: 7296748326522431041}
-  - component: {fileID: 4352198284366161819}
   m_Layer: 0
   m_Name: Motorcycle
   m_TagString: Untagged
@@ -34,6 +107,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8940281615411330275}
+  - {fileID: 8146817374016483699}
   - {fileID: 4981468212696216466}
   - {fileID: 4724990967247421900}
   m_Father: {fileID: 0}
@@ -94,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoadMaker: {fileID: 5512180334286842946, guid: 41bed162c1c1d5941aa62a88381b9aa3, type: 3}
+  roadParent: {fileID: 0}
   passedDistance: 0
   boardValue: 10
   maxSpeed: 40
@@ -130,35 +205,6 @@ MonoBehaviour:
   armTgtR: {fileID: 8867980470103875572}
   armIkL: {fileID: 3231021955546499936}
   armIkR: {fileID: 8982414693154824633}
---- !u!54 &7296748326522431041
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8940281615303652044}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &4352198284366161819
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8940281615303652044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 1, z: 2}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8940281615411330279
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6184508174705748177, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6184508174705748177, guid: 14f4cb2b191ca5b4683999bae3dcdd85, type: 3}
       propertyPath: m_LocalScale.x
@@ -476,7 +522,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1131946299807309433, guid: 9febc38db4787e241a6b64191e8553ed, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1131946299807309433, guid: 9febc38db4787e241a6b64191e8553ed, type: 3}
       propertyPath: m_LocalScale.x

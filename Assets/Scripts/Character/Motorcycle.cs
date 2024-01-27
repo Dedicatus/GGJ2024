@@ -7,7 +7,8 @@ using Sirenix.OdinInspector;
 public class Motorcycle : MonoSingleton<Motorcycle>
 {
     public GameObject RoadMaker;
-    private RoadParent roadParent;
+    [HideInInspector]
+    public RoadParent roadParent;
     private float balanceValue = 0f;
     public float BalanceValue
     {
@@ -170,38 +171,11 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         Mathf.Clamp(currentRotationZ, -maxRotationAngle, maxRotationAngle);
     }
 
-    private void startSpringBack()
+    public void startSpringBack()
     {
         onSpringBack = true;
         currentSpringBackTime = 0.0f;
         springBackDirection = transform.position.x > 0 ? -1 : 1;
         springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Obstacle"))
-        {
-            Vector3 closestPoint = other.ClosestPoint(transform.position);
-            Vector3 directionToClosestPoint = closestPoint - transform.position;
-
-            // Normalize the direction
-            directionToClosestPoint.Normalize();
-
-            float angleToFront = Vector3.Angle(transform.forward, directionToClosestPoint);
-            float angleToRight = Vector3.Angle(transform.right, directionToClosestPoint);
-
-            // Determine the direction based on the angle
-            if (angleToFront <= 30)
-            {
-                roadParent.speed = Mathf.Max(minSpeed, roadParent.speed * 0.5f);
-            }
-            else
-            {
-                //Debug.Log(other.gameObject.name);
-                //Debug.Log("Side collide");
-                startSpringBack();
-            }
-        }
     }
 }
