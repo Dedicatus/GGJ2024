@@ -6,12 +6,14 @@
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-//        _BendAmount ("Bend Amount", Vector) = (0,0,0)
-//        _BendOrigin ("Bend Origin", Vector) = (0,0,0)
-//        _BendFallOff ("Bend Falloff", Float) = 0
-//        _BendFallOffStr ("Bend Falloff Strength", Float) = 1
+        //        _BendAmount ("Bend Amount", Vector) = (0,0,0)
+        //        _BendOrigin ("Bend Origin", Vector) = (0,0,0)
+        //        _BendFallOff ("Bend Falloff", Float) = 0
+        //        _BendFallOffStr ("Bend Falloff Strength", Float) = 1
         _SwerveX("左右弯曲程度", Range(-0.003,0.003)) = 0.0
         _SwerveY("上下弯曲程度", Range(-0.003,0.003)) = 0.0
+        _SinSpeed("上下弯曲速度", Range(0.0, 1.0)) = 0.15
+        _SinFrequency("上下弯曲频率", Range(0.0, 1.0)) = 0.15
     }
     SubShader
     {
@@ -46,7 +48,10 @@
         float _SwerveY;
         half _Glossiness;
         half _Metallic;
+        half _SinSpeed;
+        half _SinFrequency;
         fixed4 _Color;
+        #define time _Time.y*0.5
 
         void vert(inout appdata_full v)
         {
@@ -63,6 +68,8 @@
             // word_pos.xyz += dist * _BendAmount;
             word_pos.x += pow(word_pos.z, 2) * _SwerveX;
             word_pos.y += pow(word_pos.z, 2) * _SwerveY;
+            word_pos.y += sin(word_pos.z * _SinFrequency - time) * _SinSpeed;
+
             //Convert the new world space of vertex and convert back to local space.
             float4 vertex = mul(unity_WorldToObject, word_pos);
 
