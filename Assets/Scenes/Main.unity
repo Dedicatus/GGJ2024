@@ -461,6 +461,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9160393817058220775, guid: e006ef7a042b64e47a1766114f322d2c, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160393817058220775, guid: e006ef7a042b64e47a1766114f322d2c, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160393817058220775, guid: e006ef7a042b64e47a1766114f322d2c, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 9160393818414683553, guid: e006ef7a042b64e47a1766114f322d2c, type: 3}
       propertyPath: m_RootOrder
       value: 7
