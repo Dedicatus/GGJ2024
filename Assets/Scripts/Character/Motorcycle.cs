@@ -177,24 +177,29 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 closestPoint = other.ClosestPoint(transform.position);
-        Vector3 directionToClosestPoint = closestPoint - transform.position;
-
-        // Normalize the direction
-        directionToClosestPoint.Normalize();
-
-        float angleToFront = Vector3.Angle(transform.forward, directionToClosestPoint);
-        float angleToRight = Vector3.Angle(transform.right, directionToClosestPoint);
-
-        // Determine the direction based on the angle
-        if (angleToFront <= 30)
+        if (other.CompareTag("Obstacle"))
         {
-            roadParent.speed = Mathf.Max(1, roadParent.speed - 10);
-        }
-        else 
-        {
-            startSpringBack();
-        }        
+            Vector3 closestPoint = other.ClosestPoint(transform.position);
+            Vector3 directionToClosestPoint = closestPoint - transform.position;
+
+            // Normalize the direction
+            directionToClosestPoint.Normalize();
+
+            float angleToFront = Vector3.Angle(transform.forward, directionToClosestPoint);
+            float angleToRight = Vector3.Angle(transform.right, directionToClosestPoint);
+
+            // Determine the direction based on the angle
+            if (angleToFront <= 30)
+            {
+                roadParent.speed = Mathf.Max(1, roadParent.speed - 10);
+            }
+            else
+            {
+                //Debug.Log(other.gameObject.name);
+                //Debug.Log("Side collide");
+                startSpringBack();
+            }
+        }       
 
     }
 
