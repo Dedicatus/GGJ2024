@@ -16,12 +16,15 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             return balanceValue;
         }
     }
-
+    
     public float moveSpeed = 5f;
 
     public float rotationSpeed = 45f;
     public float maxRotationAngle = 30f; // 最大旋转角度
     public float balanceSpeed = 2f; // 恢复平衡的速度
+    public float balanceValueSpeed = 2f; // 平衡值的速度
+
+    public float balanceValueMax = 100f; // 平衡值的最大值
 
     private float currentRotationZ = 0f; // 当前的Z轴旋转角度
     
@@ -40,6 +43,18 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         {
             // 如果没有按键或已达到最大旋转角度，快速恢复平衡
             currentRotationZ = Mathf.Lerp(currentRotationZ, 0, balanceSpeed * Time.deltaTime);
+            if (balanceValue > 0.05)
+            {
+                balanceValue -= 100f * Time.deltaTime;
+            }
+            else if (balanceValue < -0.05)
+            {
+                balanceValue += 100f * Time.deltaTime;
+            }
+            else
+            {
+                balanceValue = 0f;
+            }
         }
 
         // 应用旋转
@@ -48,5 +63,17 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         // 根据旋转角度调整X轴上的移动速度
         float moveHorizontal = currentRotationZ / maxRotationAngle;
         transform.position += new Vector3(-moveHorizontal * moveSpeed * Time.deltaTime, 0, 0);
+
+        // 更新平衡值
+        BalanceValue -= (currentRotationZ / maxRotationAngle) * balanceValueSpeed;
+
+        if (BalanceValue > balanceValueMax)
+        {
+            BalanceValue = balanceValueMax;
+        }
+        else if (BalanceValue < -balanceValueMax)
+        {
+            BalanceValue = -balanceValueMax;
+        }
     }
 }
