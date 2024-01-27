@@ -149,8 +149,8 @@ Shader "Custom/VertexColor"
         _MainTex ("Texture", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _SwerveX ("SwerveX", Float) = 0
-        _SwerveY ("SwerveY", Float) = 0
+        _SwerveX("左右弯曲程度", Range(-0.003,0.003)) = 0.0
+        _SwerveY("上下弯曲程度", Range(-0.003,0.003)) = 0.0
         _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader
@@ -159,7 +159,7 @@ Shader "Custom/VertexColor"
         {
             "RenderType"="Opaque"
         }
-        LOD 100
+        LOD 200
 
         CGPROGRAM
         #pragma surface surf Lambert vertex:vert
@@ -177,6 +177,52 @@ Shader "Custom/VertexColor"
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+
+        void vert(inout appdata_full v, out Input o)
+        {
+            UNITY_INITIALIZE_OUTPUT(Input, o);
+            o.color = v.color;
+            o.uv_MainTex = v.texcoord;
+
+            float3 WordPos = mul(unity_ObjectToWorld, v.vertex);
+            WordPos.x += pow(WordPos.z, 2) * _SwerveX;
+            WordPos.y += pow(WordPos.z, 2) * _SwerveY;
+            WordPos -= mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
+            v.vertex.xyz = mul(unity_WorldToObject, WordPos).xyz;
+			// v.vertex = UnityObjectToClipPos(v.vertex);
+        	
+            // Recalculate the normal
+            float3 normalDir = float3(-_SwerveX * 2 * WordPos.z, -_SwerveY * 2 * WordPos.z, 1);
+            v.normal = normalize(mul((float3x3)unity_ObjectToWorld, normalDir));
+            o.normal = UnityObjectToWorldNormal(v.normal);
+
+
+   //           // v2f o;
+   //
+   //          o.uv_MainTex = v.texcoord;
+			//
+			// //获取模型的空间坐标
+			// float3 WordPos = mul(unity_ObjectToWorld, v.vertex);
+   //
+			// //左右左右坐标作为弯道 
+			// //依据Z坐标求平方获取弯曲曲线，越远离世界坐标原点，弯曲效果越明显。
+			// //最后乘以左右弯道弯曲方向，和弯曲强度
+			// WordPos.x +=pow(WordPos.z, 2)*_SwerveX;
+			// //方法与上面相同，改变Y轴，获得上下坡效果
+			// WordPos.y += pow(WordPos.z, 2)*_SwerveY;
+   //
+			// //修正模型位置，WordPos 不包含物体自身的空间位移
+			// WordPos -= mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
+   //
+			// //修改世界顶点转回物体自身顶点。
+			// v.vertex = mul(unity_WorldToObject, WordPos);
+   //
+			// //转换为裁切空间
+			// o.vertex = UnityObjectToClipPos(v.vertex);
+			//
+   //          UNITY_TRANSFER_FOG(o,o.vertex);
+   //          return o;
+        }
 
         void surf(Input IN, inout SurfaceOutput o)
         {
@@ -254,24 +300,6 @@ Shader "Custom/VertexColor"
         //     v.normal = mul((float3x3)unity_ObjectToWorld, normalDir);
         //     o.normal = UnityObjectToWorldNormal(v.normal);
         // }
-
-        void vert(inout appdata_full v, out Input o)
-        {
-            UNITY_INITIALIZE_OUTPUT(Input, o);
-            o.color = v.color;
-            o.uv_MainTex = v.texcoord;
-
-            float3 WordPos = mul(unity_ObjectToWorld, v.vertex);
-            WordPos.x += pow(WordPos.z, 2) * _SwerveX;
-            WordPos.y += pow(WordPos.z, 2) * _SwerveY;
-            WordPos -= mul(unity_ObjectToWorld, float4(0, 0, 0, 1));
-            v.vertex.xyz = mul(unity_WorldToObject, WordPos).xyz;
-
-            // Recalculate the normal
-            float3 normalDir = float3(-_SwerveX * 2 * WordPos.z, -_SwerveY * 2 * WordPos.z, 1);
-            v.normal = normalize(mul((float3x3)unity_ObjectToWorld, normalDir));
-            o.normal = UnityObjectToWorldNormal(v.normal);
-        }
         ENDCG
     }
     FallBack "Diffuse"

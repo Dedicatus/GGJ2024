@@ -12,6 +12,11 @@ namespace Road
         /// </summary>
         public float generateDistance;
 
+        public bool randomEmpty;
+
+        public float emptyTime;
+        
+        public bool forceEmpty;
 
         public int curIndex;
 
@@ -39,10 +44,26 @@ namespace Road
             while (debugOffset < maximumDistance)
             {
                 debugOffset = Mathf.Abs(thisToParent.z - generateDistance);
+
+                if (randomEmpty)
+                {
+                    var random = Random.Range(0, 100);
+                    if (random < 50)
+                    {
+                        generateDistance += random;
+                        continue;
+                    }
+                }
+                
+                if (forceEmpty)
+                {
+                    generateDistance += 10;
+                    continue;
+                }
+                
                 var cell = Instantiate(cellList[Random.Range(0, cellList.Length)], container.transform);
                 cell.transform.localPosition = Vector3.forward * generateDistance;
                 generateDistance += cell.length + Random.Range(0, padding);
-                // cell.GetComponent<RoadCell>().index = curIndex;
                 cell.index = curIndex;
                 cell.center = transform;
                 cell.name = curIndex.ToString();
@@ -56,6 +77,17 @@ namespace Road
             var thisToParent = parent.transform.InverseTransformPoint(transform.position);
             debugOffset = Mathf.Abs(thisToParent.z - generateDistance);
             Generate();
+
+            if (randomEmpty)
+            {
+                // 每隔一段随机时间 
+                emptyTime -= Time.deltaTime;
+                if (emptyTime < 0)
+                {
+                    emptyTime = Random.Range(5, 10);
+                    forceEmpty = !forceEmpty;
+                }
+            }
         }
     }
 }
