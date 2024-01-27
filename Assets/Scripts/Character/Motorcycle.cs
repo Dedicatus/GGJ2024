@@ -199,8 +199,12 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 //Debug.Log("Side collide");
                 startSpringBack();
             }
-        }       
+        }
 
+        if (other.CompareTag("AirObstacle"))
+        {
+            AudioManager.Instance.PlayTestEffectSound();
+        }
     }
 
 }
