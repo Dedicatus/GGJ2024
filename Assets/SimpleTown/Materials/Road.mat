@@ -69,17 +69,18 @@ Material:
     - _DstBlend: 0
     - _EmissionScaleUI: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.778
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.573
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Shininess: 0.078125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SwerveX: -0.00056
-    - _SwerveY: -0.00009
+    - _SwerveX: 0
+    - _SwerveY: -0.00175
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
