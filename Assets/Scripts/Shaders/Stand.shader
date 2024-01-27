@@ -3,6 +3,7 @@
     Properties
     {
         _Color ("Colour", Color) = (1,1,1,1)
+        _LightColor ("Light", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
@@ -51,6 +52,7 @@
         half _SinSpeed;
         half _SinFrequency;
         fixed4 _Color;
+        fixed4 _LightColor;
         #define time _Time.y*0.5
 
         void vert(inout appdata_full v)
@@ -80,7 +82,12 @@
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by colour
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
+            if (c.x == 1 && c.y == 0 && c.z == 1)
+            {
+                o.Emission = _LightColor;
+            }
+            c *= _Color;
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
