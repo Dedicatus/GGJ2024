@@ -81,7 +81,7 @@ MonoBehaviour:
   forceEmpty: 0
   curIndex: 0
   padding: 0
-  maximumDistance: 500
+  maximumDistance: 1000
   debugOffset: 0
   parent: {fileID: 5577089922599837882}
   container: {fileID: 3275691294347183732}
@@ -218,7 +218,7 @@ MonoBehaviour:
   forceEmpty: 0
   curIndex: 0
   padding: 5
-  maximumDistance: 500
+  maximumDistance: 1000
   debugOffset: 0
   parent: {fileID: 5577089922599837882}
   container: {fileID: 7717709684971489148}
@@ -397,7 +397,7 @@ MonoBehaviour:
   forceEmpty: 0
   curIndex: 0
   padding: 5
-  maximumDistance: 500
+  maximumDistance: 1000
   debugOffset: 0
   parent: {fileID: 5577089922599837882}
   container: {fileID: 359958691998472641}
@@ -508,7 +508,7 @@ MonoBehaviour:
   forceEmpty: 0
   curIndex: 0
   padding: 0
-  maximumDistance: 500
+  maximumDistance: 1000
   debugOffset: 0
   parent: {fileID: 5577089922599837882}
   container: {fileID: 7707320987182186905}
@@ -628,7 +628,7 @@ MonoBehaviour:
   forceEmpty: 0
   curIndex: 0
   padding: 0
-  maximumDistance: 500
+  maximumDistance: 1000
   debugOffset: 0
   parent: {fileID: 5577089922599837882}
   container: {fileID: 7175748653217402753}
