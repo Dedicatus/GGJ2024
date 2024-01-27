@@ -7,6 +7,11 @@ public class AudioManager : MonoSingleton<AudioManager>
 	public AudioSource BackgroundMusic;
 	public AudioSource testEffectMusic;
 
+    void Awake()
+	{
+		BackgroundMusic.ignoreListenerPause = true;
+	}
+
 	void Start()
 	{
 		BackgroundMusic.Play();
