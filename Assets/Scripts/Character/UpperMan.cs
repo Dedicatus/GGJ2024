@@ -28,17 +28,23 @@ public class UpperMan : MonoBehaviour
     [Space(10)]
     public Transform hand;
     public float handConnectRange;
+    [Space(10)]
+    public float crouchMove;
 
+    private bool crouch;
+    private Vector3 initBodyLocalPos;
     private bool connected;
     private Vector2 innerAxis;
     private Vector2 outterAxis;
     [HideInInspector]
     public UnityAction<bool> OnChangeConnectState;
     private float disconnectTimer;
+    private float crouchTimer;
 
     private void Start()
     {
         connected = true;
+        initBodyLocalPos = body.transform.localPosition;
         OnChangeConnectState?.Invoke(connected);
     }
 
@@ -51,6 +57,7 @@ public class UpperMan : MonoBehaviour
             TryConnect();
         }
         disconnectTimer -= Time.deltaTime;
+        crouchTimer -= Time.deltaTime;
     }
 
     private void UpdateState()
@@ -61,6 +68,14 @@ public class UpperMan : MonoBehaviour
             yAngle = 180f;
             outterAxis.x *= -1f;
             innerAxis.x *= -1f;
+        }
+        if (crouch)
+        {
+            body.transform.localPosition = initBodyLocalPos - Vector3.up * crouchMove;
+        }
+        else
+        {
+            body.transform.localPosition = initBodyLocalPos;
         }
         if (connected)
         {
@@ -91,7 +106,7 @@ public class UpperMan : MonoBehaviour
             }
 
         }
-        else if(innerAxis.magnitude > 0.3f)
+        else if (innerAxis.magnitude > 0.3f)
         {
             if (inputId == 1)
             {
@@ -117,10 +132,10 @@ public class UpperMan : MonoBehaviour
             }
         }
     }
-    
+
     public void SyncConnectedState(bool state)
     {
-        if(connected == state)
+        if (connected == state)
         {
             return;
         }
@@ -168,12 +183,13 @@ public class UpperMan : MonoBehaviour
         {
             outterAxis = gamepad.leftStick.ReadValue();
             innerAxis = gamepad.rightStick.ReadValue();
-            var body = gamepad.leftShoulder.ReadValue();
-            body = Mathf.Max(body, gamepad.leftTrigger.ReadValue());
-            body = Mathf.Max(body, gamepad.leftStickButton.ReadValue());
-            if (body > 0.1f)
+            var crouch = gamepad.leftShoulder.ReadValue();
+            crouch = Mathf.Max(crouch, gamepad.leftTrigger.ReadValue());
+            crouch = Mathf.Max(crouch, gamepad.leftStickButton.ReadValue());
+            if (crouch > 0.1f && crouchTimer < 0f)
             {
-                print("Body" + inputId + ": " + body);
+                this.crouch = !this.crouch;
+                crouchTimer = 0.3f;
             }
             var hand = gamepad.rightShoulder.ReadValue();
             hand = Mathf.Max(hand, gamepad.rightTrigger.ReadValue());
@@ -187,12 +203,13 @@ public class UpperMan : MonoBehaviour
         {
             outterAxis = gamepad.rightStick.ReadValue();
             innerAxis = gamepad.leftStick.ReadValue();
-            var body = gamepad.rightShoulder.ReadValue();
-            body = Mathf.Max(body, gamepad.rightTrigger.ReadValue());
-            body = Mathf.Max(body, gamepad.rightStickButton.ReadValue());
-            if (body > 0.1f)
+            var crouch = gamepad.rightShoulder.ReadValue();
+            crouch = Mathf.Max(crouch, gamepad.rightTrigger.ReadValue());
+            crouch = Mathf.Max(crouch, gamepad.rightStickButton.ReadValue());
+            if (crouch > 0.1f && crouchTimer < 0f)
             {
-                print("Body" + inputId + ": " + body);
+                this.crouch = !this.crouch;
+                crouchTimer = 0.3f;
             }
             var hand = gamepad.leftShoulder.ReadValue();
             hand = Mathf.Max(hand, gamepad.leftTrigger.ReadValue());
