@@ -203,11 +203,5 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 startSpringBack();
             }
         }
-
-        if (other.CompareTag("AirObstacle"))
-        {
-            AudioManager.Instance.PlayTestEffectSound();
-        }
     }
-
 }
