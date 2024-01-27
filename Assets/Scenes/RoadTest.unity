@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadMaker
       objectReference: {fileID: 0}
+    - target: {fileID: 5577089922599837882, guid: 41bed162c1c1d5941aa62a88381b9aa3, type: 3}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8247580583812666263, guid: 41bed162c1c1d5941aa62a88381b9aa3, type: 3}
       propertyPath: cellList.Array.size
       value: 56
