@@ -142,18 +142,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2690957483273488305, guid: 7ca3a4ede4b3e4688b7149bd9ef8c336, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690957483273488305, guid: 7ca3a4ede4b3e4688b7149bd9ef8c336, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690957483273488305, guid: 7ca3a4ede4b3e4688b7149bd9ef8c336, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
     - target: {fileID: 2690957483273488307, guid: 7ca3a4ede4b3e4688b7149bd9ef8c336, type: 3}
       propertyPath: m_Name
       value: BalanceDisplayCanvas
