@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public GAMESTATE GameState;
 
-    public float TargetDistance = 24000;
+    public float TargetDistance = 48000;
     public float GameTime = 180;
     [ReadOnly]
-    public float remainDistance = 24000;
+    public float remainDistance = 48000;
     [ReadOnly]
     public float remainTime = 180;
-
+    public UnityAction OnGameStart;
 
     // Start is called before the first frame update
     void Start()
     {
         remainDistance = TargetDistance;
         remainTime = GameTime;
-        GameState = GAMESTATE.Ending;
+        GameState = GAMESTATE.Intro;
     }
 
     // Update is called once per frame
@@ -28,16 +30,21 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            if(GameState == GAMESTATE.Ending)
+            if(GameState == GAMESTATE.Intro)
             {               
                 StartGame();
             }
             else if(GameState == GAMESTATE.Start)
             {
                 PauseGame();
-            }else if(GameState == GAMESTATE.Pause)
+            }
+            else if(GameState == GAMESTATE.Pause)
             {
                 ContinueGame();
+            }
+            else if(GameState == GAMESTATE.Ending)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
         remainDistance = TargetDistance - Motorcycle.Instance.passedDistance;
@@ -54,6 +61,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void StartGame()
     {
+        OnGameStart?.Invoke();
         GameState = GAMESTATE.Start;
         UIManager.Instance.OnGameStart();
     }
@@ -79,11 +87,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public enum GAMESTATE
     {
+        Intro,
         Start,
         Pause,
         Ending
     }
-
-
-
 }

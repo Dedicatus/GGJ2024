@@ -48,6 +48,12 @@ public class UpperMan : MonoBehaviour
         connected = true;
         initBodyLocalPos = body.transform.localPosition;
         OnChangeConnectState?.Invoke(connected);
+        GameManager.Instance.OnGameStart += OnGameStart;
+    }
+
+    private void OnGameStart()
+    {
+        currentArmBalanceVal = 0f;
     }
 
     private void Update()
