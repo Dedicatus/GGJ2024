@@ -169,4 +169,12 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         springBackDirection = transform.position.x > 0 ? -1 : 1;
         springBackBalance = Mathf.Abs(BalanceValue) * 1.8f;
     }
+    public void Crush()
+    {
+        GetComponent<Animator>().SetTrigger("Crush");
+    }
+    public void Reset()
+    {
+        GetComponent<Animator>().SetTrigger("Reset");
+    }
 }
