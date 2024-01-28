@@ -9,12 +9,12 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public GAMESTATE GameState;
 
-    public float TargetDistance = 6000;
-    public float GameTime = 180;
+    public float TargetDistance = 2400;
+    public float GameTime = 90;
     [ReadOnly]
-    public float remainDistance = 6000;
+    public float remainDistance = 2400;
     [ReadOnly]
-    public float remainTime = 180;
+    public float remainTime = 90;
     public UnityAction OnGameStart;
 
     // Start is called before the first frame update
