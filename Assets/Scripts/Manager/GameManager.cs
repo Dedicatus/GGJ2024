@@ -9,10 +9,10 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public GAMESTATE GameState;
 
-    public float TargetDistance = 48000;
+    public float TargetDistance = 6000;
     public float GameTime = 180;
     [ReadOnly]
-    public float remainDistance = 48000;
+    public float remainDistance = 6000;
     [ReadOnly]
     public float remainTime = 180;
     public UnityAction OnGameStart;
