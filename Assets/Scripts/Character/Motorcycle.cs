@@ -19,7 +19,8 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
             if (Mathf.Abs(balanceValue) > 100)
             {
-                //  GameManager.Instance.EndGame(false);
+                GameManager.Instance.EndGame(false);
+                Crush();
             }
         }
         get
@@ -34,7 +35,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
         {
             upperManBalanceValue = value;
             updateBalanceValue();
-            
+
         }
         get
         {
@@ -56,7 +57,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     }
 
     [ReadOnly]
-    public float passedDistance= 0f;
+    public float passedDistance = 0f;
     public float boardValue = 10f;
 
     public float maxSpeed = 200;
@@ -91,19 +92,20 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
     private void Update()
     {
-        if(GameManager.Instance.GameState == GameManager.GAMESTATE.Start) {
+        if (GameManager.Instance.GameState == GameManager.GAMESTATE.Start)
+        {
             if (!onSpringBack)
             {
-                if (Input.GetKey(KeyCode.A) )
+                if (Input.GetKey(KeyCode.A))
                 {
-                    if(MotorcycleBalanceValue > - MaxBalanceValue * 0.5)
+                    if (MotorcycleBalanceValue > -MaxBalanceValue * 0.5)
                     {
                         MotorcycleBalanceValue -= motorBalanceValueChangeSpeed * Time.deltaTime;
                     }
                 }
                 else if (Input.GetKey(KeyCode.D))
                 {
-                    if(MotorcycleBalanceValue < MaxBalanceValue * 0.5)
+                    if (MotorcycleBalanceValue < MaxBalanceValue * 0.5)
                     {
                         MotorcycleBalanceValue += motorBalanceValueChangeSpeed * Time.deltaTime;
                     }
@@ -111,10 +113,11 @@ public class Motorcycle : MonoSingleton<Motorcycle>
                 else
                 {
                     // 如果没有按键或已达到最大旋转角度，快速恢复平衡
-                    MotorcycleBalanceValue = Mathf.Lerp(MotorcycleBalanceValue, 0, Mathf.Min(maxSpeed,roadParent.speed)* maxMotorBalanceRegenSpeed / maxSpeed * Time.deltaTime);
+                    MotorcycleBalanceValue = Mathf.Lerp(MotorcycleBalanceValue, 0, Mathf.Min(maxSpeed, roadParent.speed) * maxMotorBalanceRegenSpeed / maxSpeed * Time.deltaTime);
                 }
 
-                if (Input.GetKeyUp(KeyCode.W)){
+                if (Input.GetKeyUp(KeyCode.W))
+                {
                     if (roadParent.speed < maxSpeed)
                     {
                         roadParent.speed += acceleration * Time.deltaTime;
@@ -123,7 +126,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
                 if (Input.GetKey(KeyCode.S))
                 {
-                    if(roadParent.speed > minSpeed)
+                    if (roadParent.speed > minSpeed)
                     {
                         roadParent.speed -= deceleration * Time.deltaTime;
                     }
@@ -137,9 +140,9 @@ public class Motorcycle : MonoSingleton<Motorcycle>
             }
             else
             {
-                transform.position += new Vector3(springBackDirection * (springBackDistance/springBackTime) * Time.deltaTime, 0, 0);
+                transform.position += new Vector3(springBackDirection * (springBackDistance / springBackTime) * Time.deltaTime, 0, 0);
                 currentSpringBackTime += Time.deltaTime;
-                BalanceValue += springBackDirection * (springBackBalance/springBackTime) * Time.deltaTime;
+                BalanceValue += springBackDirection * (springBackBalance / springBackTime) * Time.deltaTime;
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, currentRotationZ);
 
                 if (currentSpringBackTime >= springBackTime)
@@ -152,7 +155,7 @@ public class Motorcycle : MonoSingleton<Motorcycle>
 
     private void updateRotationValue()
     {
-        
+
         currentRotationZ = -BalanceValue / MaxBalanceValue * maxRotationAngle;
         Mathf.Clamp(currentRotationZ, -maxRotationAngle, maxRotationAngle);
     }
@@ -171,10 +174,8 @@ public class Motorcycle : MonoSingleton<Motorcycle>
     }
     public void Crush()
     {
+        transform.rotation = Quaternion.identity;
+        roadParent.speed = 0f;
         GetComponent<Animator>().SetTrigger("Crush");
-    }
-    public void Reset()
-    {
-        GetComponent<Animator>().SetTrigger("Reset");
     }
 }
