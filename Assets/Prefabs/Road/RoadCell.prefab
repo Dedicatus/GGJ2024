@@ -1281,6 +1281,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (7)
@@ -1329,6 +1333,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 5725958784141332961, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Range
       value: 20.45
@@ -1809,6 +1817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (5)
@@ -1861,6 +1873,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
 --- !u!4 &2319580582726677127 stripped
@@ -2249,6 +2265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -2685,6 +2705,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (1)
@@ -2737,6 +2761,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
 --- !u!4 &3364992304131455243 stripped
@@ -3025,6 +3053,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -3441,6 +3473,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (6)
@@ -3489,6 +3525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 5725958784141332961, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Range
       value: 20.45
@@ -3611,6 +3651,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -3673,6 +3717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -3835,6 +3883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -4309,6 +4361,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -5057,6 +5113,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (2)
@@ -5105,6 +5165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 5725958784141332961, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Range
       value: 20.45
@@ -5127,6 +5191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (4)
@@ -5179,6 +5247,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
 --- !u!4 &7255956625575580908 stripped
@@ -5343,6 +5415,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -5559,6 +5635,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -5621,6 +5701,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -5733,6 +5817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh (3)
@@ -5781,6 +5869,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 5725958784141332961, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Range
       value: 20.45
@@ -5803,6 +5895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1723337725602942282, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     - target: {fileID: 100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
       propertyPath: m_Name
       value: lamp_mesh
@@ -5855,6 +5951,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5576759197775600338, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d50cf3ef635cb942a43009b33905c3d, type: 3}
 --- !u!4 &8136299304150229059 stripped
@@ -6285,6 +6385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -6551,6 +6655,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1026163262481780625}
     m_Modifications:
+    - target: {fileID: 3519604690672644486, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b42c616a0b1ebc74c83f2bc830584106, type: 2}
     - target: {fileID: 4421896596033320120, guid: dacf72fca409641fdb4a77e58901de74, type: 3}
       propertyPath: m_RootOrder
       value: 25
