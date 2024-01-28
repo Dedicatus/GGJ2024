@@ -95,7 +95,7 @@ public class UpperMan : MonoBehaviour
             {
                 t = 0f;
             }
-            else
+            else if (outterAxis.magnitude > 0.5f && outterAxis.x < 0f && outterAxis.y > 0.5f)
             {
                 t = 1f;
             }
